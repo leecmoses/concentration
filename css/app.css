@@ -18,6 +18,7 @@ body {
 
 body {
     background: #fff url('../img/shuriken.jpg');
+    font-family: 'Open Sans', sans-serif;
 }
 
 .container {
@@ -28,6 +29,7 @@ body {
 }
 
 h1 {
+    font-family: 'Kaushan Script', cursive;
     font-weight: 300;
 }
 
@@ -56,4 +58,52 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/****************
+* Deck of Cards *
+*****************/
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #ff9800 0%, #d83b30 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(40, 60, 75, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #36a079;
+    font-size: 0;
+    color: #333;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(40, 60, 75, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #e7e7cf;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    color: #eee;
+    background: #2196f3;
+    font-size: 33px;
 }
