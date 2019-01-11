@@ -100,6 +100,7 @@ h1 {
 
 .deck .card.show {
     font-size: 33px;
+    pointer-events: none;
 }
 
 .deck .card.match {
@@ -107,4 +108,5 @@ h1 {
     color: #eee;
     background: #2196f3;
     font-size: 33px;
+    pointer-events: none;
 }
