@@ -13,18 +13,19 @@ const deck = document.querySelector('.deck');
 let openCards = [];
 let matchCards = [];
 
-// Clearout deck, shuffle, then generate cards
-deck.innerHTML = '';
-icons = shuffle(icons);
-for (let i = 0; i < icons.length; i++) {
-    const card = document.createElement('li');
-    card.classList.add('card');
-    card.innerHTML = `<i class="${icons[i]}"></i>`;
-    deck.appendChild(card);
+function init() {
+    // Clearout deck, shuffle, then generate cards
+    deck.innerHTML = '';
+    icons = shuffle(icons);
+    for (let i = 0; i < icons.length; i++) {
+        const card = document.createElement('li');
+        card.classList.add('card');
+        card.innerHTML = `<i class="${icons[i]}"></i>`;
+        deck.appendChild(card);
 
-    // Handle click event for each card
-    flip(card);
-
+        // Handle click event for each card
+        flip(card);
+    }
 }
 
 function flip(card) {
@@ -39,28 +40,7 @@ function flip(card) {
             openCards.push(this);
 
             // Compare the two cards
-            if (currentCard.innerHTML === previousCard.innerHTML) {
-                
-                // Match found
-                currentCard.classList.add('match');
-                previousCard.classList.add('match');
-
-                matchCards.push(currentCard, previousCard);
-
-                openCards = [];
-
-                // Check if game is finished
-                end();
-
-            } else {
-
-                setTimeout(function() {
-                    currentCard.classList.remove('open', 'show');
-                    previousCard.classList.remove('open', 'show');
-                    openCards = [];
-                }, 750);
-
-            }
+            match(currentCard, previousCard);
         } else {
             card.classList.add('open', 'show');
             openCards.push(this);
@@ -89,8 +69,34 @@ function shuffle(array) {
     return array;
 }
 
+function match(currentCard, previousCard) {
+    if (currentCard.innerHTML === previousCard.innerHTML) {
+                
+        // Match found
+        currentCard.classList.add('match');
+        previousCard.classList.add('match');
+
+        matchCards.push(currentCard, previousCard);
+
+        openCards = [];
+
+        // Check if game is finished
+        end();
+
+    } else {
+
+        setTimeout(function() {
+            currentCard.classList.remove('open', 'show');
+            previousCard.classList.remove('open', 'show');
+            openCards = [];
+        }, 750);
+
+    }
+}
 function end() {
     if (matchCards.length === icons.length) {
         alert("Game Over");
     }
 }
+
+init();
