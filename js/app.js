@@ -92,12 +92,23 @@ function match(currentCard, previousCard) {
         }, 750);
 
     }
+
+    // Increment move counter
+    addMove();
 }
 
 function end() {
     if (matchCards.length === icons.length) {
         alert("Game Over");
     }
+}
+
+// Move counter
+const moveCounter = document.querySelector(".moves");
+let moves = 0;
+function addMove() {
+    moves++;
+    moveCounter.innerHTML = moves;
 }
 
 // Logic for restart
