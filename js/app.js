@@ -124,6 +124,7 @@ restartBtn.addEventListener('click', function() {
     // Reset any related variables
     matchCards = [];
     openCards = [];
+    moveCounter.innerHTML = 0;
     moves = 0;
 });
 
