@@ -106,6 +106,7 @@ function end() {
 // Move counter
 const moveCounter = document.querySelector(".moves");
 let moves = 0;
+moveCounter.innerHTML = 0;
 function addMove() {
     moves++;
     moveCounter.innerHTML = moves;
@@ -123,6 +124,7 @@ restartBtn.addEventListener('click', function() {
     // Reset any related variables
     matchCards = [];
     openCards = [];
+    moves = 0;
 });
 
 init();
