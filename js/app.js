@@ -93,10 +93,25 @@ function match(currentCard, previousCard) {
 
     }
 }
+
 function end() {
     if (matchCards.length === icons.length) {
         alert("Game Over");
     }
 }
+
+// Logic for restart
+const restartBtn = document.querySelector('.restart');
+restartBtn.addEventListener('click', function() {
+    // Remove all cards
+    deck.innerHTML = "";
+
+    // Call 'init' to generate new cards
+    init();
+
+    // Reset any related variables
+    matchCards = [];
+    openCards = [];
+});
 
 init();
