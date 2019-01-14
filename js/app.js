@@ -109,10 +109,10 @@ function end() {
 // Move counter
 const moveCounter = document.querySelector(".moves");
 let moves = 0;
-moveCounter.innerHTML = 0;
+moveCounter.innerHTML = `Moves: ${moves}`;
 function addMove() {
     moves++;
-    moveCounter.innerHTML = moves;
+    moveCounter.innerHTML = `Moves: ${moves}`;
 }
 
 // Rating system
@@ -139,7 +139,7 @@ restartBtn.addEventListener('click', function() {
     matchCards = [];
     openCards = [];
     moves = 0;
-    moveCounter.innerHTML = moves;
+    moveCounter.innerHTML = `Moves: ${moves}`;
     rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
 });
 
