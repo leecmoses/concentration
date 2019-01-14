@@ -88,13 +88,17 @@ function match(currentCard, previousCard) {
         setTimeout(function() {
             currentCard.classList.remove('open', 'show');
             previousCard.classList.remove('open', 'show');
-            openCards = [];
         }, 750);
+
+        openCards = [];
 
     }
 
     // Increment move counter
     addMove();
+
+    // Update rating
+    rating();
 }
 
 function end() {
@@ -112,6 +116,16 @@ function addMove() {
     moveCounter.innerHTML = moves;
 }
 
+// Rating system
+const rate = document.querySelector(".stars");
+function rating() {
+    if (moves > 12) {
+        rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
+    } if (moves > 24) {
+        rate.innerHTML = '<li><i class="fas fa-star"></i></li>';
+    }
+}
+
 // Logic for restart
 const restartBtn = document.querySelector('.restart');
 restartBtn.addEventListener('click', function() {
@@ -126,6 +140,7 @@ restartBtn.addEventListener('click', function() {
     openCards = [];
     moves = 0;
     moveCounter.innerHTML = moves;
+    rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
 });
 
 init();
