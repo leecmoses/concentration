@@ -120,9 +120,11 @@ const rate = document.querySelector(".stars");
 rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';  
 function rating() {
     if (moves > 12) {
-        rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
+        rate.innerHTML = '<li><i class="far fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';  
     } if (moves > 24) {
-        rate.innerHTML = '<li><i class="fas fa-star"></i></li>';
+        rate.innerHTML = '<li><i class="far fa-star"></i></li><li><i class="far fa-star"></i></li><li><i class="fas fa-star"></i></li>';
+    } if (moves > 36) {
+        rate.innerHTML = '<li><i class="far fa-star"></i></li><li><i class="far fa-star"></i></li><li><i class="far fa-star"></i></li>';
     }
 }
 

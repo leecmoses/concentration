@@ -47,6 +47,8 @@ h1 {
 }
 
 .score-panel .stars {
+    display: flex;
+    color: #ffd700;
     margin: 0;
     padding: 0;
     margin: 0 5px 0 0;
@@ -54,7 +56,6 @@ h1 {
 
 .score-panel .stars li {
     list-style: none;
-    display: inline-block;
 }
 
 .score-panel .timer {
