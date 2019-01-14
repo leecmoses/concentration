@@ -118,6 +118,7 @@ function addMove() {
 
 // Rating system
 const rate = document.querySelector(".stars");
+rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';  
 function rating() {
     if (moves > 12) {
         rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
