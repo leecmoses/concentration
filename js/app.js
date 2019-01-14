@@ -15,7 +15,6 @@ let matchCards = [];
 
 function init() {
     // Clearout deck, shuffle, then generate cards
-    deck.innerHTML = '';
     icons = shuffle(icons);
     for (let i = 0; i < icons.length; i++) {
         const card = document.createElement('li');
