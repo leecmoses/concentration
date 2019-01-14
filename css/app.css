@@ -17,6 +17,7 @@ body {
 }
 
 body {
+    font-size: 24px;
     background: rgba(255, 255, 255, 0.288) url('../img/shuriken.jpg');
     font-family: 'Open Sans', sans-serif;
 }
@@ -43,7 +44,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     text-align: left;
-    width: 345px;
+    width: 420px;
     margin-bottom: 10px;
 }
 
@@ -67,6 +68,11 @@ h1 {
 
 .score-panel .restart {
     cursor: pointer;
+    transition: all 500ms ease;
+}
+
+.score-panel .restart:hover {
+    transform: rotate(90deg);
 }
 
 /****************
