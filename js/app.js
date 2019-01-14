@@ -136,17 +136,17 @@ function rating() {
 }
 
 // Timer
-const timer = document.querySelector('.timer');
+const time = document.querySelector('.time');
 let liveTimer,
     seconds = 0,
     start = true;
 
-timer.innerHTML = seconds + 's';
+time.innerHTML = seconds + 's';
 
 function startTimer() {
     liveTimer = setInterval(function() {
         seconds++;
-        timer.innerHTML = seconds + 's';
+        time.innerHTML = seconds + 's';
     }, 1000);
 }
 
@@ -167,7 +167,7 @@ restartBtn.addEventListener('click', function() {
     clearInterval(liveTimer);
     seconds = 0;
     start = true;
-    timer.innerHTML = seconds + 's';
+    time.innerHTML = seconds + 's';
     rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
 });
 
