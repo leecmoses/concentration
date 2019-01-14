@@ -29,7 +29,12 @@ function init() {
 
 function flip(card) {
     card.addEventListener('click', function () {
-            
+        
+        if(start) {
+            startTimer();
+            start = false;
+        }
+
         const currentCard = this;
         const previousCard = openCards[0];
 
@@ -103,6 +108,8 @@ function match(currentCard, previousCard) {
 function end() {
     if (matchCards.length === icons.length) {
         alert("Game Over");
+
+        clearInterval(liveTimer);
     }
 }
 
@@ -128,6 +135,21 @@ function rating() {
     }
 }
 
+// Timer
+const timer = document.querySelector('.timer');
+let liveTimer,
+    seconds = 0,
+    start = true;
+
+timer.innerHTML = seconds + 's';
+
+function startTimer() {
+    liveTimer = setInterval(function() {
+        seconds++;
+        timer.innerHTML = seconds + 's';
+    }, 1000);
+}
+
 // Logic for restart
 const restartBtn = document.querySelector('.restart');
 restartBtn.addEventListener('click', function() {
@@ -142,6 +164,10 @@ restartBtn.addEventListener('click', function() {
     openCards = [];
     moves = 0;
     moveCounter.innerHTML = `Moves: ${moves}`;
+    clearInterval(liveTimer);
+    seconds = 0;
+    start = true;
+    timer.innerHTML = seconds + 's';
     rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
 });
 
