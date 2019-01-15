@@ -46,14 +46,22 @@ h1 {
     text-align: left;
     width: 420px;
     margin-bottom: 10px;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(40, 60, 75, 0.5);
+}
+
+.score-panel .moves {
+    width: 35%;
 }
 
 .score-panel .stars {
     display: flex;
     color: #ffd700;
+    width: 35%;
     margin: 0;
     padding: 0;
-    margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
@@ -61,9 +69,9 @@ h1 {
 }
 
 .score-panel .timer {
+    width: 25%;
     margin: 0;
     padding: 0;
-    margin: 0 5px 0 0;
 }
 
 .score-panel .restart {
