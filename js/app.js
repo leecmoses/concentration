@@ -40,13 +40,13 @@ function flip(card) {
 
         if (openCards.length === 1) {
             
-            card.classList.add('open', 'show');
+            card.classList.add('open', 'show', 'animated', 'flipInY');
             openCards.push(this);
 
             // Compare the two cards
             match(currentCard, previousCard);
         } else {
-            card.classList.add('open', 'show');
+            card.classList.add('open', 'show', 'animated', 'flipInY');
             openCards.push(this);
         }
         
@@ -74,11 +74,14 @@ function shuffle(array) {
 }
 
 function match(currentCard, previousCard) {
+    // Match found
     if (currentCard.innerHTML === previousCard.innerHTML) {
-                
-        // Match found
-        currentCard.classList.add('match');
-        previousCard.classList.add('match');
+        
+        currentCard.classList.remove('animated', 'flipInY');
+        previousCard.classList.remove('animated', 'flipInY');
+        
+        currentCard.classList.add('match', 'animated', 'tada');
+        previousCard.classList.add('match', 'animated', 'tada');
 
         matchCards.push(currentCard, previousCard);
 
@@ -87,12 +90,19 @@ function match(currentCard, previousCard) {
         // Check if game is finished
         end();
 
+    // Match not found        
     } else {
 
+        currentCard.classList.remove('animated', 'flipInY');
+        previousCard.classList.remove('animated', 'flipInY');
+
+        currentCard.classList.add('animated', 'wobble');
+        previousCard.classList.add('animated', 'wobble');
+
         setTimeout(function() {
-            currentCard.classList.remove('open', 'show');
-            previousCard.classList.remove('open', 'show');
-        }, 750);
+            currentCard.classList.remove('open', 'show', 'flipInY', 'wobble');
+            previousCard.classList.remove('open', 'show', 'flipInY', 'wobble');
+        }, 1000);
 
         openCards = [];
 
@@ -161,7 +171,7 @@ restartBtn.addEventListener('click', function() {
 
     // Reset any related variables
     reset();
-    
+
 });
 
 function reset() {
