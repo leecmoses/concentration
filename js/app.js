@@ -117,10 +117,18 @@ function match(currentCard, previousCard) {
 
 function end() {
     if (matchCards.length === icons.length) {
-        alert("Game Over");
-
         clearInterval(liveTimer);
+
+        modal();
     }
+}
+
+// Modal
+function modal() {
+    document.querySelector(".modal").style.display = ('flex');
+    document.querySelector(".total-seconds").innerHTML = seconds;
+    document.querySelector(".total-moves").innerHTML = moves;
+    document.querySelector(".total-stars").innerHTML = rate.innerHTML;
 }
 
 // Move counter
