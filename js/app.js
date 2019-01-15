@@ -160,6 +160,11 @@ restartBtn.addEventListener('click', function() {
     init();
 
     // Reset any related variables
+    reset();
+    
+});
+
+function reset() {
     matchCards = [];
     openCards = [];
     moves = 0;
@@ -169,6 +174,6 @@ restartBtn.addEventListener('click', function() {
     start = true;
     time.innerHTML = seconds + 's';
     rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
-});
+}
 
 init();
