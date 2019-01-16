@@ -131,6 +131,15 @@ function modal() {
     document.querySelector(".total-stars").innerHTML = rate.innerHTML;
 }
 
+// Play Again
+const playAgain = document.querySelector(".play-again");
+playAgain.addEventListener('click', function(e) {
+    e.preventDefault();
+    reset();
+    init();
+    document.querySelector(".modal").style.display = ('none');
+});
+
 // Move counter
 const moveCounter = document.querySelector(".moves");
 let moves = 0;
@@ -171,18 +180,15 @@ function startTimer() {
 // Logic for restart
 const restartBtn = document.querySelector('.restart');
 restartBtn.addEventListener('click', function() {
-    // Remove all cards
-    deck.innerHTML = "";
-
-    // Call 'init' to generate new cards
-    init();
-
     // Reset any related variables
     reset();
 
+    // Call 'init' to generate new cards
+    init();
 });
 
 function reset() {
+    deck.innerHTML = "";
     matchCards = [];
     openCards = [];
     moves = 0;
