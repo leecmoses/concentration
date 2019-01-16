@@ -1,20 +1,41 @@
-// Create a list that holds all of your cards
-let icons =   ["fas fa-leaf", "fas fa-leaf",
-                "fas fa-moon", "fas fa-moon",
-                "fas fa-sun", "fas fa-sun",
-                "fas fa-bolt", "fas fa-bolt",
-                "fas fa-frog", "fas fa-frog",
-                "fas fa-cloud", "fas fa-cloud",
-                "fas fa-fire", "fas fa-fire",
-                "fas fa-music", "fas fa-music"]
+// Global variables
+let     icons       = ["fas fa-leaf", "fas fa-leaf", "fas fa-moon", "fas fa-moon", "fas fa-sun", "fas fa-sun", "fas fa-bolt", "fas fa-bolt", "fas fa-frog", "fas fa-frog", "fas fa-cloud", "fas fa-cloud", "fas fa-fire", "fas fa-fire", "fas fa-music", "fas fa-music"],
+        liveTimer,
+        matchCards  = [],
+        moves       = 0,
+        openCards   = [],
+        seconds     = 0,
+        start       = true;
 
-const deck = document.querySelector('.deck');
+const   deck        = document.querySelector('.deck'),
+        moveCounter = document.querySelector(".moves"),
+        playAgain   = document.querySelector(".play-again"),
+        rate        = document.querySelector(".stars"),
+        restart     = document.querySelector('.restart'),
+        time        = document.querySelector('.time');
 
-let openCards = [];
-let matchCards = [];
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+        
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
 
 function init() {
-    // Clearout deck, shuffle, then generate cards
+    // Shuffle and generate cards
     icons = shuffle(icons);
     for (let i = 0; i < icons.length; i++) {
         const card = document.createElement('li');
@@ -45,32 +66,18 @@ function flip(card) {
 
             // Compare the two cards
             match(currentCard, previousCard);
+            
+            // Increment move counter
+            addMove();
+
+            // Update rating
+            rating();
+
         } else {
             card.classList.add('open', 'show', 'animated', 'flipInY');
             openCards.push(this);
         }
-        
     });
-}
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (currentIndex !== 0) {
-        
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
 }
 
 function match(currentCard, previousCard) {
@@ -90,7 +97,7 @@ function match(currentCard, previousCard) {
         // Check if game is finished
         end();
 
-    // Match not found        
+    // Match not found
     } else {
 
         currentCard.classList.remove('animated', 'flipInY');
@@ -107,12 +114,6 @@ function match(currentCard, previousCard) {
         openCards = [];
 
     }
-
-    // Increment move counter
-    addMove();
-
-    // Update rating
-    rating();
 }
 
 function end() {
@@ -132,7 +133,6 @@ function modal() {
 }
 
 // Play Again
-const playAgain = document.querySelector(".play-again");
 playAgain.addEventListener('click', function(e) {
     e.preventDefault();
     reset();
@@ -141,17 +141,12 @@ playAgain.addEventListener('click', function(e) {
 });
 
 // Move counter
-const moveCounter = document.querySelector(".moves");
-let moves = 0;
-moveCounter.innerHTML = `Moves: ${moves}`;
 function addMove() {
     moves++;
     moveCounter.innerHTML = `Moves: ${moves}`;
 }
 
 // Rating system
-const rate = document.querySelector(".stars");
-rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';  
 function rating() {
     if (moves > 12) {
         rate.innerHTML = '<li><i class="far fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';  
@@ -163,13 +158,6 @@ function rating() {
 }
 
 // Timer
-const time = document.querySelector('.time');
-let liveTimer,
-    seconds = 0,
-    start = true;
-
-time.innerHTML = seconds + 's';
-
 function startTimer() {
     liveTimer = setInterval(function() {
         seconds++;
@@ -178,8 +166,7 @@ function startTimer() {
 }
 
 // Logic for restart
-const restartBtn = document.querySelector('.restart');
-restartBtn.addEventListener('click', function() {
+restart.addEventListener('click', function() {
     // Reset any related variables
     reset();
 
