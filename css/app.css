@@ -124,6 +124,7 @@ h1 {
 .modal .total-stars {
     display: flex;
     justify-content: center;
+    color: #ffd700;
     list-style: none;
     padding: 0;
 }
