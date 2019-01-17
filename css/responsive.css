@@ -21,10 +21,10 @@
         margin: 5px 0 20px;
     }
 
-
     /**********
     ** MODAL **
     **********/
+
     .message-box {
         display: flex;
         flex-direction: column;
@@ -51,6 +51,5 @@
         height: 65px;
         width: 65px;
         margin-bottom: 5px;
-
     }
 }
