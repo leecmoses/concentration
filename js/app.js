@@ -120,19 +120,19 @@ function match(currentCard, previousCard) {
 
 function end() {
     if (matchCards.length === icons.length) {
-        clearInterval(liveTimer);
-
+        stopTimer();
         modal();
     }
 }
 
 // Modal
 function modal() {
-    document.querySelector(".modal").style.display = ('flex');
+    // Result summary in modal
     document.querySelector(".total-seconds").innerHTML = seconds;
     document.querySelector(".total-moves").innerHTML = moves;
     document.querySelector(".total-stars").innerHTML = rate.innerHTML;
 
+    // Set ninja and caption
     if (moves < 17 && seconds <= 30) {
         ninja.setAttribute("src", 'img/kakashi.png');
         caption.innerHTML = 'Excellent work!';
@@ -146,6 +146,9 @@ function modal() {
         ninja.setAttribute("src", "img/sasuke.png");
         caption.innerHTML = 'Is that all you got?'
     }
+
+    // Show modal
+    document.querySelector(".modal").style.display = ('flex');
 }
 
 // Play Again
@@ -181,7 +184,11 @@ function startTimer() {
     }, 1000);
 }
 
-// Logic for restart
+function stopTimer() {
+    clearInterval(liveTimer);
+}
+
+// Restart Button
 restart.addEventListener('click', function() {
     // Reset any related variables
     reset();
@@ -193,14 +200,14 @@ restart.addEventListener('click', function() {
 function reset() {
     deck.innerHTML = "";
     matchCards = [];
-    openCards = [];
     moves = 0;
-    moveCounter.innerHTML = `Moves: ${moves}`;
-    clearInterval(liveTimer);
+    moveCounter.innerHTML = `Moves: ${moves}`; // moveCounter has to be after moves
+    openCards = [];
+    rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
     seconds = 0;
     start = true;
+    stopTimer();
     time.innerHTML = seconds + 's';
-    rate.innerHTML = '<li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';
 }
 
 init();
