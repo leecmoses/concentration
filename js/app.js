@@ -10,6 +10,7 @@ let     icons       = ["fas fa-leaf", "fas fa-leaf", "fas fa-moon", "fas fa-moon
 const   caption     = document.querySelector("#caption"),
         deck        = document.querySelector('.deck'),
         ninja       = document.querySelector("#ninja"),
+        modal       = document.querySelector(".modal"),
         moveCounter = document.querySelector(".moves"),
         playAgain   = document.querySelector(".play-again"),
         rate        = document.querySelector(".stars"),
@@ -121,12 +122,12 @@ function match(currentCard, previousCard) {
 function end() {
     if (matchCards.length === icons.length) {
         stopTimer();
-        modal();
+        popUp();
     }
 }
 
-// Modal
-function modal() {
+// Congratulatory Modal
+function popUp() {
     // Result summary in modal
     document.querySelector(".total-seconds").innerHTML = seconds;
     document.querySelector(".total-moves").innerHTML = moves;
@@ -147,8 +148,8 @@ function modal() {
         caption.innerHTML = 'Is that all you got?'
     }
 
-    // Show modal
-    document.querySelector(".modal").style.display = ('flex');
+    // Popup
+    modal.style.display = ('flex');
 }
 
 // Play Again
@@ -156,7 +157,7 @@ playAgain.addEventListener('click', function(e) {
     e.preventDefault();
     reset();
     init();
-    document.querySelector(".modal").style.display = ('none');
+    modal.style.display = ('none');
 });
 
 // Move counter
