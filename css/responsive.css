@@ -1,0 +1,56 @@
+/********************
+* MAJOR BREAKPOINTS *
+********************/
+/* MOBILE */
+@media screen and (max-width: 475px) {
+
+    body {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 45px;
+    }
+    
+    /***************
+    ** Scoreboard **
+    ***************/
+
+    .score-panel {
+        width: 280px;
+        margin: 5px 0 20px;
+    }
+
+
+    /**********
+    ** MODAL **
+    **********/
+    .message-box {
+        display: flex;
+        flex-direction: column;
+        height: 75%;
+        width: 100%;
+    }
+
+    .modal button {
+        margin-bottom: 15px;
+    }
+
+    /****************
+    * Deck of Cards *
+    *****************/
+
+    .deck {
+        width: 300px;
+        min-height: 0px;
+        padding: 10px 10px 5px;
+        margin: 0;
+    }
+
+    .deck .card {
+        height: 65px;
+        width: 65px;
+        margin-bottom: 5px;
+
+    }
+}
