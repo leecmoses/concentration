@@ -7,7 +7,9 @@ let     icons       = ["fas fa-leaf", "fas fa-leaf", "fas fa-moon", "fas fa-moon
         seconds     = 0,
         start       = true;
 
-const   deck        = document.querySelector('.deck'),
+const   caption     = document.querySelector("#caption"),
+        deck        = document.querySelector('.deck'),
+        ninja       = document.querySelector("#ninja"),
         moveCounter = document.querySelector(".moves"),
         playAgain   = document.querySelector(".play-again"),
         rate        = document.querySelector(".stars"),
@@ -73,6 +75,9 @@ function flip(card) {
             // Update rating
             rating();
 
+            // Check if game is finished
+            end();
+
         } else {
             card.classList.add('open', 'show', 'animated', 'flipInY');
             openCards.push(this);
@@ -93,9 +98,6 @@ function match(currentCard, previousCard) {
         matchCards.push(currentCard, previousCard);
 
         openCards = [];
-
-        // Check if game is finished
-        end();
 
     // Match not found
     } else {
@@ -130,6 +132,20 @@ function modal() {
     document.querySelector(".total-seconds").innerHTML = seconds;
     document.querySelector(".total-moves").innerHTML = moves;
     document.querySelector(".total-stars").innerHTML = rate.innerHTML;
+
+    if (moves < 17 && seconds <= 30) {
+        ninja.setAttribute("src", 'img/kakashi.png');
+        caption.innerHTML = 'Excellent work!';
+    } else if (moves < 17) {
+        ninja.setAttribute("src", "img/naruto.png");
+        caption.innerHTML = 'Great job!';
+    } else if (moves < 23) {
+        ninja.setAttribute("src", "img/sakura.png");
+        caption.innerHTML = 'Nice work!';
+    } else {
+        ninja.setAttribute("src", "img/sasuke.png");
+        caption.innerHTML = 'Is that all you got?'
+    }
 }
 
 // Play Again
@@ -148,11 +164,11 @@ function addMove() {
 
 // Rating system
 function rating() {
-    if (moves > 12) {
+    if (moves > 16) {
         rate.innerHTML = '<li><i class="far fa-star"></i></li><li><i class="fas fa-star"></i></li><li><i class="fas fa-star"></i></li>';  
-    } if (moves > 24) {
+    } if (moves > 22) {
         rate.innerHTML = '<li><i class="far fa-star"></i></li><li><i class="far fa-star"></i></li><li><i class="fas fa-star"></i></li>';
-    } if (moves > 36) {
+    } if (moves > 30) {
         rate.innerHTML = '<li><i class="far fa-star"></i></li><li><i class="far fa-star"></i></li><li><i class="far fa-star"></i></li>';
     }
 }
